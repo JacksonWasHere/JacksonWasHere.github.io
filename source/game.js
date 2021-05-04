@@ -8,7 +8,7 @@ var increaseSize;
 var decreaseSize;
 
 function setup() {
-    canvasSize=windowWidth*4/5;
+    canvasSize=windowWidth-2*gsize-20;
     sqwidth=canvasSize/gsize;
     cnv=createCanvas(sqwidth * gsize + 2 * gsize, sqwidth * gsize + 2 * gsize + btnBuffer);
     
