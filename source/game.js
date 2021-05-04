@@ -93,6 +93,7 @@ function loadGrid(){
 function swap(index){
     console.log(index,index%gsize,int(index/gsize));
     solution.steps[index] = (solution.steps[index]+1)%2;
+
     invert(index);
     if(index % gsize != 0){
         invert(index-1);
@@ -106,10 +107,23 @@ function swap(index){
     if(int(index/gsize) != gsize-1){
         invert(index+gsize);
     }
+    check();
 }
 
-function logSteps(){
-    //console.table(
+function check(){
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i].color == "#FFFFFF"){
+            return;
+        }
+    }
+    var out = "";
+    for(var j = 0; j < gsize; j++){
+        for(var k = 0; k < gsize; k++){
+            out+=solution.steps[j*gsize + k] + " "
+        }
+        out+="\n"
+    }
+    alert("Congrats! You solved "+gsize+" by "+gsize+"\nHere is your solution:\n"+out);
 }
 
 function invert(index){
