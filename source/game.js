@@ -1,5 +1,5 @@
 var gsize = 5;
-var canvasSize = windowWidth;
+var canvasSize;
 var sqwidth = canvasSize/gsize;
 var btnBuffer = 40;
 
@@ -8,6 +8,7 @@ var increaseSize;
 var decreaseSize;
 
 function setup() {
+    canvasSize=windowWidth
     cnv=createCanvas(sqwidth * gsize + 2 * gsize, sqwidth * gsize + 2 * gsize + btnBuffer);
     
     increaseSize = new Clickable();
