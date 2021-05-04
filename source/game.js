@@ -10,7 +10,7 @@ var decreaseSize;
 var solution={"size":gsize,steps:new Array(gsize*gsize).fill(0)};
 
 function setup() {
-    canvasSize=min(windowHeight,windowWidth) - 2*gsize - 20;
+    canvasSize=getSize();
     sqwidth=canvasSize/gsize;
     cnv=createCanvas(sqwidth * gsize + 2 * gsize, sqwidth * gsize + 2 * gsize + btnBuffer);
     
@@ -39,6 +39,14 @@ function setup() {
     loadGrid();
 }
 
+function getSize(){
+    if(windowHeight < windowWidth){
+        canvasSize = windowHeight - 2*gsize - 50;
+    } else {
+        canvasSize = windowWidth - 2*gsize - 50
+    }
+   
+}
 
 function draw() {
     background("grey");
