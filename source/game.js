@@ -1,5 +1,5 @@
 var gsize = 5;
-var canvasSize = deviceWidth;
+var canvasSize = device-width;
 var sqwidth = canvasSize/gsize;
 var btnBuffer = 40;
 
