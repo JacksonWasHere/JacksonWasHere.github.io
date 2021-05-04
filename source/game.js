@@ -41,11 +41,10 @@ function setup() {
 
 function getSize(){
     if(windowHeight < windowWidth){
-        canvasSize = windowHeight - 2*gsize - 50;
+        return windowHeight - 2*gsize - 50;
     } else {
-        canvasSize = windowWidth - 2*gsize - 50
+        return windowWidth - 2*gsize - 50
     }
-   
 }
 
 function draw() {
