@@ -7,8 +7,10 @@ var buttons = new Array(gsize*gsize);
 var increaseSize;
 var decreaseSize;
 
+var solution={"size":gsize,steps:new Array(gsize*gsize).fill(0)};
+
 function setup() {
-    canvasSize=windowWidth-2*gsize-20;
+    canvasSize=min(windowHeight,windowWidth) - 2*gsize - 20;
     sqwidth=canvasSize/gsize;
     cnv=createCanvas(sqwidth * gsize + 2 * gsize, sqwidth * gsize + 2 * gsize + btnBuffer);
     
@@ -19,6 +21,7 @@ function setup() {
     increaseSize.text = "Bigger";
     increaseSize.onPress = function(){
         gsize++;
+        solution = {size:"gsize",steps:new Array(gsize*gsize).fill(0)};
         loadGrid();
     }
 
@@ -29,6 +32,7 @@ function setup() {
     decreaseSize.text = "Smaller";
     decreaseSize.onPress = function(){
         gsize--;
+        solution = {size:"gsize",steps:new Array(gsize*gsize).fill(0)};
         loadGrid();
     }
 
@@ -40,6 +44,23 @@ function draw() {
     background("grey");
     centerCanvas();
     drawButtons();
+}
+
+function windowResized(){
+    if(windowHeight < windowWidth){
+        canvasSize = windowHeight - 2*gsize - 50;
+    } else {
+        canvasSize = windowWidth - 2*gsize - 50
+    }
+    sqwidth=canvasSize/gsize;
+    resizeCanvas(sqwidth * gsize + 2 * gsize, sqwidth * gsize + 2 * gsize + btnBuffer);
+
+    increaseSize.locate(width/2,height - btnBuffer);
+    increaseSize.resize(width/2,btnBuffer);
+    decreaseSize.locate(0, height - btnBuffer);
+    decreaseSize.resize(width/2,btnBuffer);
+
+    loadGrid();
 }
 
 function loadGrid(){
@@ -64,6 +85,7 @@ function loadGrid(){
 
 function swap(index){
     console.log(index,index%gsize,int(index/gsize));
+    solution.steps[index] = (solution.steps[index]+1)%2;
     invert(index);
     if(index % gsize != 0){
         invert(index-1);
@@ -77,6 +99,10 @@ function swap(index){
     if(int(index/gsize) != gsize-1){
         invert(index+gsize);
     }
+}
+
+function logSteps(){
+    //console.table(
 }
 
 function invert(index){
